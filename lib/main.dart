@@ -1,4 +1,4 @@
-import 'package:bookley_app/core/utils/colors_assets.dart';
+import 'package:bookley_app/core/utils/constants.dart';
 import 'package:bookley_app/features/home/presentation/views/home_view.dart';
 import 'package:bookley_app/features/splash/presentation/views/splash_view_.dart';
 import 'package:flutter/material.dart';
