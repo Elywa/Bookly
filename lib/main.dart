@@ -1,3 +1,4 @@
+import 'package:bookley_app/core/utils/app_routes.dart';
 import 'package:bookley_app/core/utils/constants.dart';
 import 'package:bookley_app/features/home/presentation/views/home_view.dart';
 import 'package:bookley_app/features/splash/presentation/views/splash_view_.dart';
@@ -14,18 +15,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRoutes.router,
       debugShowCheckedModeBanner: false,
-      initialRoute: SplashView.splashViewRouteName,
-      routes: {
-        SplashView.splashViewRouteName: (context) => const SplashView(),
-        HomeView.homeViewRouteName: (context) => const HomeView()
-      },
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: kprimapryColor,
         textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
       ),
-      home: const SplashView(),
     );
   }
 }

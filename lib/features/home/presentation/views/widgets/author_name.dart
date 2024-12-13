@@ -12,7 +12,7 @@ class AuthorName extends StatelessWidget {
     return Text(
       "Ahmed Eliwa",
       textAlign: TextAlign.start,
-      style: Styles.textStyle18
+      style: Styles.textStyle14
           .copyWith(fontFamily: kfontFamily, color: const Color(0xff809870)),
       overflow: TextOverflow.ellipsis,
       maxLines: 2,

@@ -9,16 +9,16 @@ class PriceAndRatingOfBestSellerListViewBooksItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
           child: Text(
             "100  \$",
-            style: Styles.textStyle20,
+            style: Styles.textStyle20.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        Expanded(
+        const Expanded(
           child: BookRating(),
         )
       ],

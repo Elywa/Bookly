@@ -1,9 +1,11 @@
+import 'package:bookley_app/core/utils/app_routes.dart';
 import 'package:bookley_app/features/home/presentation/views/home_view.dart';
 import 'package:bookley_app/features/splash/presentation/views/widgets/slided_splash_logo.dart';
 import 'package:bookley_app/features/splash/presentation/views/widgets/slided_splash_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -74,7 +76,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        Navigator.of(context).pushReplacementNamed(HomeView.homeViewRouteName);
+        GoRouter.of(context).push(AppRoutes.homeroute);
       },
     );
   }

@@ -9,10 +9,12 @@ class BookName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
+    return Text(
       "Book Name Harry Potter  Book Name Book Name Book Name ",
       textAlign: TextAlign.start,
-      style: Styles.textStyle20,
+      style: Styles.textStyle20.copyWith(
+        fontFamily: kFontFamily3,
+      ),
       overflow: TextOverflow.ellipsis,
       maxLines: 2,
     );

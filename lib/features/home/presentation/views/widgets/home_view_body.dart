@@ -19,37 +19,37 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8),
-      child: CustomScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        slivers: [
-          // AppBar and FeaturedBooksListView as separate SliverToBoxAdapter
-          const SliverToBoxAdapter(child: CustomAppBar()),
-          const SliverToBoxAdapter(child: FeaturedBooksListView()),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * .06,
-            ),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomAppBar(),
+              const FeaturedBooksListView(),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .06,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  'Best Seller',
+                  style: Styles.textStyle18,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * .02,
+              ),
+            ],
           ),
-          const SliverToBoxAdapter(
-            child: Text(
-              'Best Seller',
-              style: Styles.textStyle18,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * .02,
-            ),
-          ),
-          // Filling remaining space with BestSellerListView
-          const SliverFillRemaining(
-            hasScrollBody: true,
+        ),
+        const SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: BestSellerListView(),
           ),
-        ],
-      ),
+        )
+      ],
     );
   }
 }
@@ -63,7 +63,8 @@ class BestSellerListView extends StatelessWidget {
       padding: EdgeInsets.zero,
       itemCount: 20,
       shrinkWrap: true, // Allow the ListView to shrink to fit its children
-      physics: const BouncingScrollPhysics(), // Disable independent scrolling
+      physics:
+          const NeverScrollableScrollPhysics(), // Disable independent scrolling
       itemBuilder: (context, index) {
         return const BestSellerListViewItem();
       },
