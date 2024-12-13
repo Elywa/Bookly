@@ -4,6 +4,7 @@ import 'package:bookley_app/core/utils/app_assets.dart';
 import 'package:bookley_app/core/utils/constants.dart';
 import 'package:bookley_app/core/utils/styles.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/author_name.dart';
+import 'package:bookley_app/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/book_name.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/custom_app_bar.dart';
@@ -20,70 +21,52 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomAppBar(),
-          const FeaturedBooksListView(),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * .06,
+      child: CustomScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        slivers: [
+          // AppBar and FeaturedBooksListView as separate SliverToBoxAdapter
+          const SliverToBoxAdapter(child: CustomAppBar()),
+          const SliverToBoxAdapter(child: FeaturedBooksListView()),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: MediaQuery.sizeOf(context).height * .06,
+            ),
           ),
-          const Text(
-            'Best Seller',
-            style: Styles.titleText,
+          const SliverToBoxAdapter(
+            child: Text(
+              'Best Seller',
+              style: Styles.textStyle18,
+            ),
           ),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * .02,
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: MediaQuery.sizeOf(context).height * .02,
+            ),
           ),
-          const BestSellerListViewItem()
+          // Filling remaining space with BestSellerListView
+          const SliverFillRemaining(
+            hasScrollBody: true,
+            child: BestSellerListView(),
+          ),
         ],
       ),
     );
   }
 }
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+class BestSellerListView extends StatelessWidget {
+  const BestSellerListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
-      child: SizedBox(
-        height: MediaQuery.sizeOf(context).height * .2,
-        child: Row(
-          children: [
-            AspectRatio(
-              aspectRatio: 1 / 1.5,
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    image: const DecorationImage(
-                        image: AssetImage(AssetData.testImage),
-                        fit: BoxFit.fill)),
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width * .06,
-            ),
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  BookName(),
-                  AuthorName(),
-                  PriceAndRatingOfBestSellerListViewBooksItem(),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      itemCount: 20,
+      shrinkWrap: true, // Allow the ListView to shrink to fit its children
+      physics: const BouncingScrollPhysics(), // Disable independent scrolling
+      itemBuilder: (context, index) {
+        return const BestSellerListViewItem();
+      },
     );
   }
 }
-
-
-
-

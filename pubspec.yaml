@@ -33,14 +33,9 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.6
+  google_fonts: ^6.2.1
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
@@ -72,9 +67,11 @@ flutter:
       fonts:
         - asset: assets/fonts/ZillaSlab-Bold.ttf
 
-    - family: Playfair Display 
+    - family: Playfair Display
       fonts:
         - asset: assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf
-  #
+    - family: GT Sectra Fine
+      fonts:
+        - asset: assets/fonts/GT Sectra Fine Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

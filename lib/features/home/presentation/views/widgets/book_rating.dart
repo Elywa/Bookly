@@ -17,11 +17,11 @@ class BookRating extends StatelessWidget {
         ),
         Text(
           "4.8",
-          style: Styles.titleText,
+          style: Styles.textStyle14,
         ),
         Text(
           "(2365)",
-          style: Styles.titleText,
+          style: Styles.textStyle14,
         ),
       ],
     );
