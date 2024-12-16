@@ -4,6 +4,7 @@ import 'package:bookley_app/core/utils/app_assets.dart';
 import 'package:bookley_app/core/utils/constants.dart';
 import 'package:bookley_app/core/utils/styles.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/author_name.dart';
+import 'package:bookley_app/features/home/presentation/views/widgets/best_seller_list_view.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/book_name.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/book_rating.dart';
@@ -54,20 +55,4 @@ class HomeViewBody extends StatelessWidget {
   }
 }
 
-class BestSellerListView extends StatelessWidget {
-  const BestSellerListView({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      itemCount: 20,
-      shrinkWrap: true, // Allow the ListView to shrink to fit its children
-      physics:
-          const NeverScrollableScrollPhysics(), // Disable independent scrolling
-      itemBuilder: (context, index) {
-        return const BestSellerListViewItem();
-      },
-    );
-  }
-}
