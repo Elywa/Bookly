@@ -3,4 +3,5 @@ class AssetData {
   static const String item = 'assets/images/item.png';
   static const String image = 'assets/images/image.png';
   static const String testImage = 'assets/images/images.jpeg';
+  static const String errorImage = 'assets/images/error.png';
 }
