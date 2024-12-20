@@ -1,5 +1,3 @@
-
-
 import 'package:bookley_app/features/home/presentation/views/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +18,7 @@ class BooksActionButton extends StatelessWidget {
           ),
         ),
         CustomButton(
-          onTap: () {}
-          ,
+          onTap: () {},
           text: 'Preview',
           backgroundColor: const Color(0xffEF8262),
           textColor: Colors.white,
