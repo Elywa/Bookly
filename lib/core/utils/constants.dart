@@ -6,3 +6,6 @@ const kfontFamily2 = 'Playfair Display';
 const kFontFamily3 = 'GT Sectra Fine';
 const kFetchFeaturedBookEndPoint =
     'volumes?Filtering=free-ebooks&q=programming';
+
+const kFetchNewestBooksEndPoint =
+    'volumes?Filtering=free-ebooks&q=programming&Sorting=newest';
