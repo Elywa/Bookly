@@ -4,6 +4,7 @@ import 'package:bookley_app/features/home/data/data%20sources/home_remote_data_s
 import 'package:bookley_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookley_app/features/home/domain/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class HomeRepoImpl extends HomeRepo {
   final HomeRemoteDataSourceImple remoteDataSource;
@@ -20,7 +21,10 @@ class HomeRepoImpl extends HomeRepo {
       booksList = await remoteDataSource.fetchFeaturedBooks();
       return right(booksList);
     } catch (e) {
-      return left(Failures());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
   }
 
@@ -35,7 +39,10 @@ class HomeRepoImpl extends HomeRepo {
       booksList = await remoteDataSource.fetchNewestBooks();
       return right(booksList);
     } catch (e) {
-      return left(Failures());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
   }
 }
