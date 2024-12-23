@@ -26,6 +26,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
     for (var book in data['items']) {
       books.add(BookModel.fromJson(book));
     }
+
     return books;
   }
 
@@ -33,6 +34,8 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   Future<List<BookEntity>> fetchNewestBooks() async {
     var data = await api.get(endPoint: kFetchNewestBooksEndPoint);
     List<BookEntity> books = fetchBooksList(data);
+
+    await saveBoxData(books, kNewestBooks);
     return books;
   }
 }

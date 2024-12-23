@@ -11,3 +11,4 @@ const kFetchNewestBooksEndPoint =
     'volumes?Filtering=free-ebooks&q=programming&Sorting=newest';
 
 const kFeaturedBooks = 'Featured Books';
+const kNewestBooks = 'Newest Books';
