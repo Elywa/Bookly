@@ -1,7 +1,9 @@
 import 'package:bookley_app/core/utils/api_services.dart';
 import 'package:bookley_app/core/utils/constants.dart';
+import 'package:bookley_app/core/utils/functions.dart';
 import 'package:bookley_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookley_app/features/home/domain/entities/book_entity.dart';
+import 'package:hive/hive.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks();
@@ -15,6 +17,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await api.get(endPoint: kFetchFeaturedBookEndPoint);
     List<BookEntity> books = fetchBooksList(data);
+    await saveBoxData(books, kFeaturedBooks);
     return books;
   }
 
