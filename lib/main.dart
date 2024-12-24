@@ -1,7 +1,10 @@
 import 'package:bookley_app/core/utils/app_routes.dart';
 import 'package:bookley_app/core/utils/constants.dart';
 import 'package:bookley_app/features/home/domain/entities/book_entity.dart';
+import 'package:bookley_app/features/home/domain/usecases/featch_featured_books_use_case.dart';
+import 'package:bookley_app/features/home/presentation/manager/featured%20books%20cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
@@ -19,12 +22,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRoutes.router,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: kprimapryColor,
-        textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) {
+          return FeaturedBooksCubit(FeatchFeaturedBooksUseCase());
+        })
+      ],
+      child: MaterialApp.router(
+        routerConfig: AppRoutes.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: kprimapryColor,
+          textTheme:
+              GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        ),
       ),
     );
   }
