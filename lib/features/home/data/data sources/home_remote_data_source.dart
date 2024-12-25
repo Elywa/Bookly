@@ -17,7 +17,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await api.get(endPoint: kFetchFeaturedBookEndPoint);
     List<BookEntity> books = fetchBooksList(data);
-    await saveBoxData(books, kFeaturedBooks);
+     saveBoxData(books, kFeaturedBooks);
     return books;
   }
 
@@ -35,7 +35,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
     var data = await api.get(endPoint: kFetchNewestBooksEndPoint);
     List<BookEntity> books = fetchBooksList(data);
 
-    await saveBoxData(books, kNewestBooks);
+     saveBoxData(books, kNewestBooks);
     return books;
   }
 }
