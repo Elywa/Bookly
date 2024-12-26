@@ -16,7 +16,7 @@ class HomeViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CustomAppBar(),
-              FeaturedBooksBlocBuilder(),
+              const FeaturedBooksBlocBuilder(),
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * .06,
               ),

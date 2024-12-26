@@ -6,7 +6,7 @@ import 'package:bookley_app/features/home/domain/entities/book_entity.dart';
 import 'package:hive/hive.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchFeaturedBooks();
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0});
   Future<List<BookEntity>> fetchNewestBooks();
 }
 
@@ -14,10 +14,10 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   final ApiServices api;
   HomeRemoteDataSourceImple({required this.api});
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() async {
-    var data = await api.get(endPoint: kFetchFeaturedBookEndPoint);
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0}) async {
+    var data = await api.get(endPoint: 'volumes?Filtering=free-ebooks&q=programming&startIndex=${pageNumber * 10}');
     List<BookEntity> books = fetchBooksList(data);
-     saveBoxData(books, kFeaturedBooks);
+    saveBoxData(books, kFeaturedBooks);
     return books;
   }
 
@@ -35,7 +35,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
     var data = await api.get(endPoint: kFetchNewestBooksEndPoint);
     List<BookEntity> books = fetchBooksList(data);
 
-     saveBoxData(books, kNewestBooks);
+    saveBoxData(books, kNewestBooks);
     return books;
   }
 }
