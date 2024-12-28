@@ -42,7 +42,7 @@ class _FeaturedBooksBlocConsumerState extends State<FeaturedBooksBlocConsumer> {
             child: Text(state.message),
           );
         } else {
-          return const ShimmerFeaturedBooksListView();
+          return const FeaturedBooksListViewLoadingIndicator();
         }
       },
     );
