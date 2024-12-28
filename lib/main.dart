@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
               FeatchFeaturedBooksUseCase(
                 locator.get<HomeRepoImpl>(),
               ),
-            )..getFeaturedBooks();
+            )..getFeaturedBooks(pageNumber: 0);
           },
         ),
         BlocProvider(

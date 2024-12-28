@@ -13,12 +13,13 @@ class FeaturedBooksListView extends StatefulWidget {
   final List<BookEntity> books;
 
   @override
-  _FeaturedBooksListViewState createState() => _FeaturedBooksListViewState();
+  State<StatefulWidget> createState() => _FeaturedBooksListViewState();
 }
 
 class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
-  late ScrollController _scrollController;
-
+  late final ScrollController _scrollController;
+  int nextPage = 1;
+  var isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -26,19 +27,21 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     _scrollController.addListener(_onScroll);
   }
 
-  void _onScroll() {
-    if (_scrollController.position.atEdge) {
-      // Check if scrolling has reached 70% of the list view's total scroll extent
-      final double threshold = _scrollController.position.maxScrollExtent * 0.7;
-      if (_scrollController.offset >= threshold) {
-        BlocProvider.of<FeaturedBooksCubit>(context).getFeaturedBooks();
+  void _onScroll() async {
+    var currentPosition = _scrollController.position.pixels;
+    var maxScrollLength = _scrollController.position.maxScrollExtent;
+    if (currentPosition >= 0.7 * maxScrollLength) {
+      if (!isLoading) {
+        isLoading = true;
+        BlocProvider.of<FeaturedBooksCubit>(context)
+            .getFeaturedBooks(pageNumber: nextPage++);
+        isLoading = false;
       }
     }
   }
 
   @override
   void dispose() {
-    _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
     super.dispose();
   }

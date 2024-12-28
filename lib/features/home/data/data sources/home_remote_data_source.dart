@@ -16,12 +16,12 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0}) async {
     var data = await api.get(endPoint: 'volumes?Filtering=free-ebooks&q=programming&startIndex=${pageNumber * 10}');
-    List<BookEntity> books = fetchBooksList(data);
+    List<BookEntity> books = parseListOfBooksFromJsonMap(data);
     saveBoxData(books, kFeaturedBooks);
     return books;
   }
 
-  List<BookEntity> fetchBooksList(Map<String, dynamic> data) {
+  List<BookEntity> parseListOfBooksFromJsonMap(Map<String, dynamic> data) {
     List<BookEntity> books = [];
     for (var book in data['items']) {
       books.add(BookModel.fromJson(book));
@@ -33,7 +33,7 @@ class HomeRemoteDataSourceImple extends HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchNewestBooks() async {
     var data = await api.get(endPoint: kFetchNewestBooksEndPoint);
-    List<BookEntity> books = fetchBooksList(data);
+    List<BookEntity> books = parseListOfBooksFromJsonMap(data);
 
     saveBoxData(books, kNewestBooks);
     return books;
