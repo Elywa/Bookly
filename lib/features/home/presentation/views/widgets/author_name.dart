@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 class AuthorName extends StatelessWidget {
   const AuthorName({
-    super.key,
+    super.key, this.name,
   });
-
+  final String? name;
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Ahmed Eliwa",
+      name ?? "UnKnown",
       textAlign: TextAlign.start,
       style: Styles.textStyle14
           .copyWith(fontFamily: kfontFamily, color: const Color(0xff809870)),

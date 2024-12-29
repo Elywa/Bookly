@@ -1,5 +1,6 @@
 import 'package:bookley_app/core/utils/app_assets.dart';
 import 'package:bookley_app/core/utils/app_routes.dart';
+import 'package:bookley_app/features/home/domain/entities/book_entity.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/author_name.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/book_name.dart';
 import 'package:bookley_app/features/home/presentation/views/widgets/custom_image.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
-
+  const BestSellerListViewItem({super.key, required this.book, required this.index});
+  final BookEntity book;
+  final int index ;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,18 +24,27 @@ class BestSellerListViewItem extends StatelessWidget {
           height: MediaQuery.sizeOf(context).height * .18,
           child: Row(
             children: [
-              const CustomImage(),
+              CustomImage(
+                image: book.image,
+              ),
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * .06,
               ),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    BookName(),
-                    AuthorName(),
-                    PriceAndRatingOfBestSellerListViewBooksItem(),
+                    BookName(
+                      name: book.title,
+                    ),
+                    AuthorName(
+                      name: book.authorName,
+                    ),
+                    PriceAndRatingOfBestSellerListViewBooksItem(
+                      index: index,
+                      book: book,
+                    ),
                   ],
                 ),
               )

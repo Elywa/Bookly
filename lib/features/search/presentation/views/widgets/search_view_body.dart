@@ -32,6 +32,7 @@ class SearchViewBody extends StatelessWidget {
           ),
           Expanded(
             child: BestSellerListView(
+              books: [],
               scrolling: BouncingScrollPhysics(),
             ),
           ),

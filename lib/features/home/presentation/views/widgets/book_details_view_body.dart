@@ -44,10 +44,10 @@ class BookDetailsViewBody extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width * .5,
-              child: const BookRating(),
-            ),
+            // SizedBox(
+            //   width: MediaQuery.sizeOf(context).width * .5,
+            //   child: const BookRating(),
+            // ),
             const SizedBox(
               height: 25,
             ),
