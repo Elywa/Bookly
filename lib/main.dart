@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               FetchNewestBooksUseCase(
                 locator.get<HomeRepoImpl>(),
               ),
-            )..fetchNewestBooks();
+            )..fetchNewestBooks(pageNumber: 0);
           },
         ),
       ],

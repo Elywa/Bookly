@@ -17,7 +17,7 @@ class FeaturedListViewItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         onTap: () {
-          GoRouter.of(context).push(AppRoutes.bookDetailsroute);
+          GoRouter.of(context).pushNamed(AppRoutes.bookDetailsroute);
         },
         child: AspectRatio(
           aspectRatio: 2 / 3, //width / hieght
